@@ -67,3 +67,11 @@ export const configureSuite: Required<Config>['configureSuite'] = (suite) => {
     suite.setup(() => TestUtils.httpServer().start())
   }
 }
+
+// export const runnerHooks: Required<Pick<Config, 'setup' | 'teardown'>> = {
+//   setup: [
+//     () => TestUtils.ace().loadCommands(),
+//     () => TestUtils.db().truncate()
+//   ],
+//   teardown: [],
+// }
