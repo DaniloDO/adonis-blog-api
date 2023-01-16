@@ -1,12 +1,13 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, hasMany, HasMany, manyToMany, ManyToMany, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
+import { slugify, Slugify } from '@ioc:Adonis/Addons/LucidSlugify'
 
 import Category from './Category'
 import User from './User'
 import Comment from './Comment'
 
 export default class Post extends BaseModel {
-  @column({ isPrimary: true })
+  @column({ isPrimary: true, serializeAs: null })
   public id: number
 
   @column({})
@@ -16,6 +17,11 @@ export default class Post extends BaseModel {
   public title: string
 
   @column({})
+  @slugify({
+    'strategy': 'dbIncrement',
+    'fields': ['title'],
+    'allowUpdates': true
+  })
   public slug: string
 
   @column({})
@@ -35,6 +41,9 @@ export default class Post extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @column({})
+  public userId: number
 
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>

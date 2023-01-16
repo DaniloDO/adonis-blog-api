@@ -1,6 +1,7 @@
 import UserFactory from 'App/Models/User'
 import Factory from '@ioc:Adonis/Lucid/Factory'
 import { DateTime } from 'luxon'
+import PostFactory from './PostFactory'
 
 export default Factory.define(UserFactory, ({ faker }) => {
   return {
@@ -11,4 +12,5 @@ export default Factory.define(UserFactory, ({ faker }) => {
     'phone': faker.phone.number(),
     'password': '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
   }
-}).build()
+}).relation('posts', () => PostFactory )
+  .build()

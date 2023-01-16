@@ -6,7 +6,7 @@ import UserFactory from 'Database/factories/UserFactory'
 
 test.group('User test', () => {
     test('test_if_user_index_route_returns_data', async ({client}) => {
-      const user = await UserFactory.createMany(3);
+      const user = await UserFactory.with('posts', 1).createMany(3);
 
       const response = await client.get('/users');
 
@@ -18,7 +18,7 @@ test.group('User test', () => {
     });
 
     test('test_if_user_show_route_returns_data', async ({client}) => {
-      const user = await UserFactory.create();
+      const user = await UserFactory.with('posts', 1).create();
 
       const response = await client.get(`/users/${user.uid}`);
 
@@ -30,7 +30,7 @@ test.group('User test', () => {
     });
 
     test('test_if_user_destroy_route_erases_data', async({client}) => {
-      const user = await UserFactory.create();
+      const user = await UserFactory.with('posts', 1).create();
 
       const response = await client.delete(`/users/${user.uid}`)
 
