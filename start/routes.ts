@@ -31,3 +31,13 @@ Route.group(() => {
   Route.delete('/:uid', 'UsersController.destroy').as('destroy');
   Route.get('/:uid', 'UsersController.show').as('show');
 }).prefix('/users').as('users');
+
+Route.group(() => {
+  Route.get('/', 'PostsController.index').as('index');
+  Route.post('/', 'PostsController.store').as('store');
+  Route.group(() => {
+    Route.get('/', 'PostsController.show').as('show');
+    Route.put('/', 'PostsController.update').as('update');
+    Route.delete('/', 'PostsController.destroy').as('destroy');
+  }).prefix('/:uid');
+}).prefix('/posts').as('posts');

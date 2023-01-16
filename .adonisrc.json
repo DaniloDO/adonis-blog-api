@@ -20,7 +20,8 @@
   "providers": [
     "./providers/AppProvider",
     "@adonisjs/core",
-    "@adonisjs/lucid"
+    "@adonisjs/lucid",
+    "@adonisjs/lucid-slugify"
   ],
   "aceProviders": [
     "@adonisjs/repl"
@@ -34,7 +35,6 @@
         ],
         "timeout": 60000
       },
-
       {
         "name": "unit",
         "files": [

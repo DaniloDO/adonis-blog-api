@@ -19,7 +19,7 @@ export default class extends BaseSchema {
   }
 
   public async down () {
-    this.schema.alterTable('posts', (table) => {
+    this.schema.alterTable('categories_posts', (table) => {
       table.dropForeign('post_id');
       table.dropForeign('category_id');
     });

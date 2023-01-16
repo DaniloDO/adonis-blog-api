@@ -14,8 +14,8 @@ export default class extends BaseSchema {
       table.string('image').nullable(),
       table.timestamp('published_at'),
 
-      table.integer('user_id').unsigned(),
-      table.foreign('user_id').references('users.id'),
+      table.integer('user_id').unsigned().notNullable(),
+      table.foreign('user_id').references('users.id').onDelete('CASCADE').onUpdate('CASCADE'),
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

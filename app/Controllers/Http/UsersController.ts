@@ -18,7 +18,7 @@ export default class UsersController {
    * Store newly created resource in storage.
    */
   public async store({request}: HttpContextContract) {
-    const postSchema = schema.create({
+    const userSchema = schema.create({
       'uid': schema.string({}, [rules.uuid()]),
       'name': schema.string(),
       'email': schema.string({}, [rules.email()]),
@@ -27,7 +27,7 @@ export default class UsersController {
       'password': schema.string()
     });
 
-    const validated = await request.validate({schema: postSchema});
+    const validated = await request.validate({schema: userSchema});
 
     const user = User.create({
       'uid': validated.uid,
