@@ -27,9 +27,11 @@ Route.get('/', async () => {
 Route.group(() => {
   Route.get('/', 'UsersController.index').as('index');
   Route.post('/', 'UsersController.store').as('store');
-  Route.put('/:uid', 'UsersController.update').as('update');
-  Route.delete('/:uid', 'UsersController.destroy').as('destroy');
-  Route.get('/:uid', 'UsersController.show').as('show');
+  Route.group(() => {
+    Route.put('/', 'UsersController.update').as('update');
+    Route.delete('/', 'UsersController.destroy').as('destroy');
+    Route.get('/', 'UsersController.show').as('show');
+  }).prefix('/:uid');
 }).prefix('/users').as('users');
 
 Route.group(() => {
@@ -41,3 +43,13 @@ Route.group(() => {
     Route.delete('/', 'PostsController.destroy').as('destroy');
   }).prefix('/:uid');
 }).prefix('/posts').as('posts');
+
+Route.group(() => {
+  Route.get('/', 'CategoriesController.index').as('index');
+  Route.post('/', 'CategoriesController.store').as('store');
+  Route.group(() => {
+    Route.get('/', 'CategoriesController.show').as('show');
+    Route.put('/', 'CategoriesController.update').as('update');
+    Route.delete('/', 'CategoriesController.destroy').as('destroy');
+  }).prefix('/:uid');
+}).prefix('/categories').as('categories');

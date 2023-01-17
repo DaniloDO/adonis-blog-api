@@ -5,7 +5,7 @@ import Post from './Post'
 
 
 export default class Category extends BaseModel {
-  @column({ isPrimary: true })
+  @column({ isPrimary: true, serializeAs: null })
   public id: number
 
   @column({})

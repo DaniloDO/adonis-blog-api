@@ -12,7 +12,6 @@ export default class PostsController {
   public async index({}: HttpContextContract) {
     const post = await Post.query()
 
-
     return post;
   }
 
