@@ -41,7 +41,6 @@ export default class PostsController {
       'image': validated.image,
       'published_at': validated.published_at,
       'userId': validated.userId
-      
     });
 
     return post;
@@ -53,7 +52,7 @@ export default class PostsController {
    */
   public async show({params}: HttpContextContract) {
     const { uid } = params;
-    const post = Post.findByOrFail('uid', uid);
+    const post = await Post.findByOrFail('uid', uid);
 
     return post;
   }

@@ -53,3 +53,13 @@ Route.group(() => {
     Route.delete('/', 'CategoriesController.destroy').as('destroy');
   }).prefix('/:uid');
 }).prefix('/categories').as('categories');
+
+Route.group(() => {
+  Route.get('/', 'CommentsController.index').as('index');
+  Route.post('/', 'CommentsController.store').as('store');
+  Route.group(() => {
+    Route.get('/', 'CommentsController.show').as('show');
+    Route.put('/', 'CommentsController.update').as('update');
+    Route.delete('/', 'CommentsController.destroy').as('destroy');
+  }).prefix('/:uid');
+}).prefix('/comments').as('comments');

@@ -10,10 +10,10 @@ export default class extends BaseSchema {
       table.text('content'),
       table.timestamp('published_at'),
 
-      table.integer('user_id').unsigned(),
+      table.integer('user_id').unsigned().notNullable(),
       table.foreign('user_id').references('users.id'),
 
-      table.integer('post_id').unsigned(),
+      table.integer('post_id').unsigned().notNullable(),
       table.foreign('post_id').references('posts.id'),
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
