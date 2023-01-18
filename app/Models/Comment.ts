@@ -23,6 +23,12 @@ export default class Comment extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
+  @column({})
+  public userId: number
+
+  @column({})
+  public postId: number
+
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>
 

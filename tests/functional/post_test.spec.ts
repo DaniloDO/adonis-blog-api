@@ -36,7 +36,7 @@ test.group('Post test', () => {
     response.body().assert?.propertyVal(
       response.body(),
       ['success', true]
-    )
+    );
   });
 
 

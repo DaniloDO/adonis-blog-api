@@ -1,20 +1,16 @@
-import PostFactory from 'App/Models/Post'
+import Comment from 'App/Models/Comment'
 import Factory from '@ioc:Adonis/Lucid/Factory'
 import { DateTime } from 'luxon'
 
 import UserFactory from './UserFactory'
+import PostFactory from './PostFactory'
 
-export default Factory.define(PostFactory, async ({ faker }) => {
-  const title = faker.lorem.sentence(3);
-
+export default Factory.define(Comment, ({ faker }) => {
   return {
     'uid': faker.datatype.uuid(),
-    'title': title,
-    'slug': title,
-    'description': faker.lorem.word(),
     'content': faker.lorem.paragraph(),
-    'image': faker.image.imageUrl(), 
     'published_at': DateTime.now()
   }
 }).relation('user', () => UserFactory)
+  .relation('post', () => PostFactory)
   .build()
